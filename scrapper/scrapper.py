@@ -59,6 +59,6 @@ async def scrap_articles():
                 if 'time' not in list(articles[article_key].keys()):
                     articles[article_key]['time'] = time
 
-    json_articles = json.dumps(articles, indent=2)
+    # json_articles = json.dumps(articles, indent=2)
 
-    return json_articles
+    return articles
