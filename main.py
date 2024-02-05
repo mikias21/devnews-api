@@ -1,11 +1,13 @@
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # Local imports
 from routers.index import router
+from utils.constants import General
 
 origins = [
-    'http://127.0.0.1:3000', 'http://localhost:3000', 'https://passitt.netlify.app'
+    '*',
 ]
 
 
@@ -23,5 +25,8 @@ app.add_middleware(
 app.include_router(router)
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run()
+    if General.PRODUCTION.value == True:
+        uvicorn.run(app, host="0.0.0.0", port=8000)
+    else:
+        app.debug = True
+        uvicorn.run(app, host="127.0.0.1", port=8000)

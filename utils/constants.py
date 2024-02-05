@@ -20,3 +20,6 @@ class MediumTags(Enum):
         "infosec",
         "penetration-testing"
     ] 
+
+class General(Enum):
+    PRODUCTION = True
